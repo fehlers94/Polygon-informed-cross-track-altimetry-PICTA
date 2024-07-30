@@ -11,13 +11,17 @@ To get a local copy up and running follow these steps.
    ```sh
    git clone https://github.com/...
    ```
-2. Besides built-in MATLAB functions, we also need ```kml2struct``` (https://www.mathworks.com/matlabcentral/fileexchange/35642-kml2struct), which can be pasted in the folder ```Software/```
+2. ```Software/Loadcommonsetting.m``` is used to save and load some info about your local directory. Therein, adjust the ```home_dir``` variable to state the directory of your local copy.
+3. Besides built-in MATLAB functions, we also need ```kml2struct``` (https://www.mathworks.com/matlabcentral/fileexchange/35642-kml2struct). Paste the function into the ```Software/``` folder.
 
+### Getting the data
+Next we will need to obtain the underlying FFSAR-processed altimetry data from the respective 4TU.ResearchData repository, see https://www.doi.org/10.4121/304db898-f99c-490a-97c4-13f919ae3c05.
 
-doig.org/10.4121/304db898-f99c-490a-97c4-13f919ae3c05
+3. Unpack the contents of ```Garonne_FFSAR_altimetry_data.zip``` to the directory ```Data/L1b_Garonne/nc/```
+4. Unpack the contents of ```Creuse_FFSAR_altimetry_data.zip``` to the directory ```Data/L1b_Creuse/nc/```
 
 ## Usage
-
+The PICTA river retracking is implemented here simply as a sequence of 
 
 
 
