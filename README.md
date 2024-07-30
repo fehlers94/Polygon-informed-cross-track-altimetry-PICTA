@@ -11,8 +11,11 @@ To get a local copy up and running to reproduce the results of the paper, follow
    ```sh
    git clone https://github.com/...
    ```
-2. The script ```Software/Loadcommonsetting.m``` is used to save and load some info about your local directory. Therein, adjust the ```home_dir``` variable to state the directory of your local repository.
-3. Besides built-in MATLAB functions, we also need ```kml2struct``` (https://www.mathworks.com/matlabcentral/fileexchange/35642-kml2struct). Paste the function into the ```Software``` folder.
+2. The script ```Software/Loadcommonsetting.m``` is used to save and load some info about your local directory. Therein, adjust the ```home_dir``` variable to state the directory of your local repository, e.g.
+   ```matlab
+   home_dir = '/home/fehelers/PhD Delft/Projects/Polygon-informed-cross-track-altimetry-PICTA';
+   ```
+4. Besides built-in MATLAB functions, we also need ```kml2struct``` (https://www.mathworks.com/matlabcentral/fileexchange/35642-kml2struct). Download the function into the ```Software``` folder.
 
 ### Getting all the data
 Next we will need to obtain the underlying FFSAR-processed altimetry data over the Garonne and Creuse rivers from the respective 4TU.ResearchData repository, see https://www.doi.org/10.4121/304db898-f99c-490a-97c4-13f919ae3c05.
@@ -86,18 +89,34 @@ river_name = 'Garonne';
 ```
 Upon execution, the script will iterate over all the FFSAR data in ```Data/L1b_Garonne/nc/``` and save the resulting river water level profiles in ```Results/L2_Garonne/``` as workspace variable (mat-files).
 
-### Step 1.b (optional) Export river water levels to netcdf
-Open the script ```PICTA_export_to_netcdf.m``` in MATLAB and set the ```river_name``` variable to choose the river scenario to be processed, keep ```corrections_included = false```:
+### Step 1.b (optional) Export river water level profiles to netcdf
+Open the script ```PICTA_export_to_netcdf.m``` in MATLAB and set again the ```river_name``` variable to choose the river scenario to be processed, keep ```corrections_included = false```:
 ```matlab
 % choose river scenario
-%river_name = 'Creuse';
 river_name = 'Garonne';
+%river_name = 'Creuse';
 corrections_included = false;
 ```
-Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne/``` and add corresponding netcdf with detailed variable descriptions.
+Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne/``` and add corresponding netcdf-files with detailed variable descriptions.
 
-### Step 2.a Apply geophysical corrections 
+### Step 2. Apply geophysical corrections 
+Open the script ```PICTA_apply_geophysical_corrections.m``` in MATLAB and set again the ```river_name``` variable to choose the river scenario to be processed:
+```matlab
+% choose river scenario
+river_name = 'Garonne';
+%river_name = 'Creuse';
+```
+Upon execution, the script will iterate over all the raw river water level data (mat-files) in ```Results/L2_Garonne/```, apply the geophysical corrections to the river water level estimates and save the data including the corrections to new mat-files in ```Results/L2_Garonne_cor/```.
 
+### Step 3. Export river water level profiles to netcdf
+Open the script ```PICTA_export_to_netcdf.m``` in MATLAB and set again the ```river_name``` variable to choose the river scenario to be processed, set ```corrections_included = true```:
+```matlab
+% choose river scenario
+river_name = 'Garonne';
+%river_name = 'Creuse';
+corrections_included = true;
+```
+Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne_cor/``` and add corresponding netcdf-files with detailed variable descriptions.
 
 ### References
 Ehlers, Frithjof and Slobbe, Cornelis and Schlembach, Florian and Kleinherenbrink, Marcel and Verlaan, Martin, Polygon-Informed Cross-Track Altimetry (Picta): Estimating River Water Level Profiles with the Sentinel-6 Altimeter. Available at SSRN: https://ssrn-com.tudelft.idm.oclc.org/abstract=4851452 or http://dx.doi.org.tudelft.idm.oclc.org/10.2139/ssrn.4851452 
