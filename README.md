@@ -4,7 +4,7 @@
 This repository contains the MATLAB scripts used to generate the PICTA-derived river water level profiles in the work of Ehlers et al. (2024) *Polygon-Informed Cross-Track Altimetry (Picta): Estimating River Water Level Profiles with the Sentinel-6 Altimeter*, see reference below and details in the source publication.
 
 ## Getting started
-To get a local copy up and running follow these steps.
+To get a local copy up and running to reproduce the results of the paper, follow these steps.
 
 ### Installation
 1. Make a local copy of this repository in a directory of your choice, e.g. via 
@@ -33,8 +33,9 @@ Additionally, we will have to obtain the corresponding Level-2 altimetry data fr
    ```
    in the directory ```Data/L2_Creuse/``` to repeat the same step for the Creuse river.
 
+
 ## Brief software description
-The PICTA river retracking is implemented here simply as a sequence of three rudimentary MATLAB scripts: ```PICTA_river_retracking.m```, ```PICTA_apply_geophysical_corrections.m``` and```PICTA_export_to_netcdf.m```, the headers of which contain detailed information about their purpose, inputs, outputs and variable descriptions:
+The PICTA river retracking is implemented here simply as a sequence of three rudimentary MATLAB scripts: ```PICTA_river_retracking.m```, ```PICTA_apply_geophysical_corrections.m``` and```PICTA_export_to_netcdf.m```, the headers of which contain detailed information about their purpose, inputs, outputs and variable descriptions.
 ```matlab
 % =========================================================================
 % Script Name: PICTA_river_retracking.m
