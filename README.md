@@ -89,6 +89,14 @@ river_name = 'Garonne';
 %river_name = 'Creuse';
 ```
 Upon execution, the script will iterate over all the FFSAR data in ```Data/L1b_Garonne/nc/``` and save the resulting river water level profiles in ```Results/L2_Garonne/``` as workspace variable (mat-files).
+The script will also create some intermediate visualization of each profile, which is saved to the ```Results``` folder. The first visual shows the retracked FFSAR radargram
+![image](https://github.com/user-attachments/assets/79ce1ab7-d332-4dc4-bbc1-d8de3cf176f2)
+
+while the second visual plots the corresponding raw river water level profile (no geophysical corrections applied).
+![image](https://github.com/user-attachments/assets/6f23ccaa-eab1-4e14-91ed-8aa0c0cb5359)
+
+
+
 
 ### Step 1.b (optional) Export (uncorrected) river water level profiles to netcdf
 Open the script ```PICTA_export_to_netcdf.m``` in MATLAB and set again the ```river_name``` variable to choose the river scenario to be processed, keep ```corrections_included = false```:
