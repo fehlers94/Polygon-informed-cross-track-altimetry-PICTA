@@ -30,13 +30,12 @@ Additionally, we will have to obtain the corresponding Level-2 altimetry data fr
    ```sh
    eumdac download -c EO:EUM:DAT:0841 --start 2021-01-01  --end 2022-12-31  --bbox -1 42 1 50 --relorbit 35  
    ```
-   in the directory ```Data/L2_Garonne/``` to download the appropriate Level-2 altimetry files for the Garonne river.
+   in the directory ```Data/L2_Garonne/``` to download the appropriate Level-2 altimetry files for the Garonne river, then unzip the files.
 7. Execute
    ```sh
    eumdac download -c EO:EUM:DAT:0841 --start 2021-01-01  --end 2022-12-31  --bbox 0.9 46.6 1.0 46.7 --relorbit 73
    ```
-   in the directory ```Data/L2_Creuse/``` to repeat the same step for the Creuse river.
-
+   in the directory ```Data/L2_Creuse/``` to and download the appropriate Level-2 altimetry files for the Creuse river, then unzip these files as well.
 
 ## Brief software description
 The PICTA river retracking is implemented here simply as a sequence of three rudimentary MATLAB scripts: ```PICTA_river_retracking.m```, ```PICTA_apply_geophysical_corrections.m``` and```PICTA_export_to_netcdf.m```, the headers of which contain detailed information about their purpose, inputs, outputs and variable descriptions.
