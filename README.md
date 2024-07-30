@@ -11,18 +11,91 @@ To get a local copy up and running follow these steps.
    ```sh
    git clone https://github.com/...
    ```
-2. ```Software/Loadcommonsetting.m``` is used to save and load some info about your local directory. Therein, adjust the ```home_dir``` variable to state the directory of your local copy.
-3. Besides built-in MATLAB functions, we also need ```kml2struct``` (https://www.mathworks.com/matlabcentral/fileexchange/35642-kml2struct). Paste the function into the ```Software/``` folder.
+2. The script ```Software/Loadcommonsetting.m``` is used to save and load some info about your local directory. Therein, adjust the ```home_dir``` variable to state the directory of your local repository.
+3. Besides built-in MATLAB functions, we also need ```kml2struct``` (https://www.mathworks.com/matlabcentral/fileexchange/35642-kml2struct). Paste the function into the ```Software``` folder.
 
-### Getting the data
-Next we will need to obtain the underlying FFSAR-processed altimetry data from the respective 4TU.ResearchData repository, see https://www.doi.org/10.4121/304db898-f99c-490a-97c4-13f919ae3c05.
+### Getting all the data
+Next we will need to obtain the underlying FFSAR-processed altimetry data over the Garonne and Creuse rivers from the respective 4TU.ResearchData repository, see https://www.doi.org/10.4121/304db898-f99c-490a-97c4-13f919ae3c05.
 
 3. Unpack the contents of ```Garonne_FFSAR_altimetry_data.zip``` to the directory ```Data/L1b_Garonne/nc/```
 4. Unpack the contents of ```Creuse_FFSAR_altimetry_data.zip``` to the directory ```Data/L1b_Creuse/nc/```
 
-## Usage
-The PICTA river retracking is implemented here simply as a sequence of 
+Additionally, we will have to obtain the corresponding Level-2 altimetry data from EUMETSAT (http://doi.org/10.15770/EUM_SEC_CLM_0096), which contain the values of the geophysical corrections and which are not contained in the lower Level-1a and Level-1b products. The data can be obtained via the EUMETSAT Data Access Client (EUMDAC) client, see https://user.eumetsat.int/resources/user-guides/eumetsat-data-access-client-eumdac-guide on how to set it up. Once you have set up EUMDAC (made a user account, set your credentials, etc.) you can 
 
+5. execute
+   ```sh
+   eumdac download -c EO:EUM:DAT:0841 --start 2021-01-01  --end 2022-12-31  --bbox -1 42 1 50 --relorbit 35  
+   ```
+   in the directory ```Data/L2_Garonne/``` to download the appropriate Level-2 altimetry files for the Garonne river.
+6. Execute
+   ```sh
+   eumdac download -c EO:EUM:DAT:0841 --start 2021-01-01  --end 2022-12-31  --bbox 0.9 46.6 1.0 46.7 --relorbit 73
+   ```
+   in the directory ```Data/L2_Creuse/``` to repeat the same step for the Creuse river.
+
+## Brief software description
+The PICTA river retracking is implemented here simply as a sequence of three rudimentary MATLAB scripts: ```PICTA_river_retracking.m```, ```PICTA_apply_geophysical_corrections.m``` and```PICTA_export_to_netcdf.m```, the headers of which contain detailed information about their purpose, inputs, outputs and variable descriptions:
+```matlab
+% =========================================================================
+% Script Name: PICTA_river_retracking.m
+% -------------------------------------------------------------------------
+% Purpose: 
+%   This script reads FFSAR-processed altimetry data and a polygon of the
+%   Garonne or Creuse rivers in France and applies the PICTA method to 
+%   derive dense river water level profiles (~10 m along-track resolution).
+% ...
+```
+
+```matlab
+=========================================================================
+% Script Name: PICTA_apply_geophysical_corrections.m
+% -------------------------------------------------------------------------
+% Purpose: 
+%   This script reads PICTA-processed river water level profile data produced by
+%   'PICTA_river_retracking.m' and applies the geophysical corrections interpolated from
+%   the corresponding EUMETSAT Level-2 files, see
+%       "EUMETSAT for Copernicus (2023): Poseidon-4 Altimetry Level 2 High 
+%       Resolution (baseline version F08) - Sentinel-6 - Reprocessed, 
+%       European Organisation for the Exploitation of Meteorological Satellites, 
+%       DOI: 10.15770/EUM_SEC_CLM_0096,
+%       https://dx.doi.org/10.15770/EUM_SEC_CLM_0096"```
+% ...
+```
+
+```matlab
+% =========================================================================
+% Script Name: PICTA_export_to_netcdf.m
+% -------------------------------------------------------------------------
+% Purpose: 
+%   This script reads PICTA-processed river water level profile data produced by
+%   "PICTA_river_retracking.m" or
+%   "PICTA_apply_geophysical_corrections.m"
+%   and exports the data to netcdf.
+% ...
+```
+
+
+## Usage
+### Step 1.a Generate river water level profiles from FFSAR data and river polygons 
+Open the script ```PICTA_river_retracking.m``` in MATLAB and set the ```river_name``` variable to choose the river scenario to be processed:
+```matlab
+% choose river scenario to process
+river_name = 'Garonne';
+%river_name = 'Creuse';
+```
+Upon execution, the script will iterate over all the FFSAR data in ```Data/L1b_Garonne/nc/``` and save the resulting river water level profiles in ```Results/L2_Garonne/``` as workspace variable (mat-files).
+
+### Step 1.b (optional) Export river water levels to netcdf
+Open the script ```PICTA_export_to_netcdf.m``` in MATLAB and set the ```river_name``` variable to choose the river scenario to be processed, keep ```corrections_included = false```:
+```matlab
+% choose river scenario
+%river_name = 'Creuse';
+river_name = 'Garonne';
+corrections_included = false;
+```
+Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne/``` and add corresponding netcdf with detailed variable descriptions.
+
+### Step 2.a Apply geophysical corrections 
 
 
 ### References
