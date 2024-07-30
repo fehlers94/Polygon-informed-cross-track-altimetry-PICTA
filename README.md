@@ -88,7 +88,7 @@ Open the script ```PICTA_river_retracking.m``` in MATLAB and set the ```river_na
 river_name = 'Garonne';
 %river_name = 'Creuse';
 ```
-Upon execution, the script will iterate over all the FFSAR data in ```Data/L1b_Garonne/nc/``` and save the resulting river water level profiles in ```Results/L2_Garonne/``` as workspace variable (mat-files).
+Upon execution, the script will iterate over all the FFSAR data in ```Data/L1b_Garonne/nc/``` and save the resulting river water level profiles in ```Results/L2_Garonne/``` as workspace variables (mat-files).
 The script will also create some intermediate visualization of the processing output, which is saved to the ```Results``` folder. 
 
 The first visual shows which parts of the FFSAR echo is retracked and identified as valid.
@@ -105,7 +105,7 @@ river_name = 'Garonne';
 %river_name = 'Creuse';
 corrections_included = false;
 ```
-Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne/``` and add corresponding netcdf-files with detailed variable descriptions.
+Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne/``` and convert them to netcdf-files with detailed variable descriptions. These are added to the directory ```Results/L2_Garonne/```.
 
 ### Step 2. Apply geophysical corrections 
 Open the script ```PICTA_apply_geophysical_corrections.m``` in MATLAB and set again the ```river_name``` variable to choose the river scenario to be processed:
@@ -124,7 +124,7 @@ river_name = 'Garonne';
 %river_name = 'Creuse';
 corrections_included = true;
 ```
-Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne_cor/``` and add corresponding netcdf-files with detailed variable descriptions.
+Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne_cor/``` and convert them to netcdf-files with detailed variable descriptions. These are added to the directory ```Results/L2_Garonne_cor/```.
 
 ## Results
 ### List of netcdf variables
