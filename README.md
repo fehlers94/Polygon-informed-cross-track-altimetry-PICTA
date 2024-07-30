@@ -5,7 +5,8 @@ This repository contains the MATLAB scripts used to generate the PICTA-derived r
 
 ## Getting started
 In order to run these scripts you will need an installation of MATLAB (R2021a) including the mapping toolbox.
-To get a local copy of this repository up and running to reproduce the results of the paper, follow these steps.
+
+To get a local copy of this repository up and running and to reproduce the results of the paper, follow the following steps.
 
 ### Installation
 1. Make a local copy of this repository in a directory of your choice, e.g. via 
