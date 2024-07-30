@@ -80,7 +80,7 @@ The PICTA river retracking is implemented here simply as a sequence of three rud
 
 
 ## Usage
-### Step 1.a Generate river water level profiles from FFSAR data and river polygons 
+### Step 1.a Generate (uncorrected) river water level profiles from FFSAR data and river polygons 
 Open the script ```PICTA_river_retracking.m``` in MATLAB and set the ```river_name``` variable to choose the river scenario to be processed:
 ```matlab
 % choose river scenario to process
@@ -89,7 +89,7 @@ river_name = 'Garonne';
 ```
 Upon execution, the script will iterate over all the FFSAR data in ```Data/L1b_Garonne/nc/``` and save the resulting river water level profiles in ```Results/L2_Garonne/``` as workspace variable (mat-files).
 
-### Step 1.b (optional) Export river water level profiles to netcdf
+### Step 1.b (optional) Export (uncorrected) river water level profiles to netcdf
 Open the script ```PICTA_export_to_netcdf.m``` in MATLAB and set again the ```river_name``` variable to choose the river scenario to be processed, keep ```corrections_included = false```:
 ```matlab
 % choose river scenario
@@ -106,7 +106,7 @@ Open the script ```PICTA_apply_geophysical_corrections.m``` in MATLAB and set ag
 river_name = 'Garonne';
 %river_name = 'Creuse';
 ```
-Upon execution, the script will iterate over all the raw river water level data (mat-files) in ```Results/L2_Garonne/```, apply the geophysical corrections to the river water level estimates and save the data including the corrections to new mat-files in ```Results/L2_Garonne_cor/```.
+Upon execution, the script will iterate over all the uncorrected river water level data (mat-files) in ```Results/L2_Garonne/```, apply the geophysical corrections to the river water level estimates and save the data including the corrections to new mat-files in ```Results/L2_Garonne_cor/```.
 
 ### Step 3. Export river water level profiles to netcdf
 Open the script ```PICTA_export_to_netcdf.m``` in MATLAB and set again the ```river_name``` variable to choose the river scenario to be processed, set ```corrections_included = true```:
@@ -117,6 +117,8 @@ river_name = 'Garonne';
 corrections_included = true;
 ```
 Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne_cor/``` and add corresponding netcdf-files with detailed variable descriptions.
+
+## Results
 
 ### References
 Ehlers, Frithjof and Slobbe, Cornelis and Schlembach, Florian and Kleinherenbrink, Marcel and Verlaan, Martin, Polygon-Informed Cross-Track Altimetry (Picta): Estimating River Water Level Profiles with the Sentinel-6 Altimeter. Available at SSRN: https://ssrn-com.tudelft.idm.oclc.org/abstract=4851452 or http://dx.doi.org.tudelft.idm.oclc.org/10.2139/ssrn.4851452 
