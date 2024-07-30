@@ -7,11 +7,13 @@ This repository contains the MATLAB scripts used to generate the PICTA-derived r
 To get a local copy up and running follow these steps.
 
 ### Installation
-1. Clone the repo
+1. Make a local copy of this repository in a directory of your choice, e.g. via 
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/...
    ```
-data repo
+2. Besides built-in MATLAB functions, we also need ```kml2struct``` (https://www.mathworks.com/matlabcentral/fileexchange/35642-kml2struct), which can be pasted in the folder ```Software/```
+
+
 doig.org/10.4121/304db898-f99c-490a-97c4-13f919ae3c05
 
 ## Usage
