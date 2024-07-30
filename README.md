@@ -4,7 +4,8 @@
 This repository contains the MATLAB scripts used to generate the PICTA-derived river water level profiles in the work of Ehlers et al. (2024) *Polygon-Informed Cross-Track Altimetry (Picta): Estimating River Water Level Profiles with the Sentinel-6 Altimeter*, see reference below and details in the source publication.
 
 ## Getting started
-To get a local copy up and running to reproduce the results of the paper, follow these steps.
+In order to run these scripts you will need an installation of MATLAB (R2021a) including the mapping toolbox.
+To get a local copy of this repository up and running to reproduce the results of the paper, follow these steps.
 
 ### Installation
 1. Make a local copy of this repository in a directory of your choice, e.g. via 
