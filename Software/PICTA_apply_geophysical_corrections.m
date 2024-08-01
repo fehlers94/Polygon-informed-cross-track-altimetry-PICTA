@@ -48,7 +48,7 @@
 %   July 11, 2024
 %
 % License:
-%   This code is licensed under the XXX License.
+%   This code is licensed under the MIT License.
 % =========================================================================
 
 clear all
