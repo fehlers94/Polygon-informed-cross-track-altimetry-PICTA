@@ -127,10 +127,10 @@ corrections_included = true;
 Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne_cor/``` and convert them to netcdf-files with detailed variable descriptions. These are added to the directory ```Results/L2_Garonne_cor/```.
 
 ## Results
-### List of netcdf variables
+### List of netcdf variables in PICTA-processed data
 The netcdf-files produced by ```PICTA_export_to_netcdf.m``` contain the following variables, describing the river water level profiles and some intermediate results of the retracking:
 ```sh
-netcdf file:/home/fehelers/PhD%20Delft/Projects/hydrology%20river/Results/L2_Garonne_cor/S6A_P4_1A_HR______20210108T224244_20210108T233901_20220507T234826_3377_006_070_035_EUM__REP_NT_F06.SEN6_TUDelft.nc
+netcdf file: S6A_P4_1A_HR______20210108T224244_20210108T233901_20220507T234826_3377_006_070_035_EUM__REP_NT_F06.SEN6_TUDelft.nc
 dimensions:
     river_bank_index = 15;
     waveform_index = 55820;
@@ -259,6 +259,48 @@ variables:
  double tracker_range(waveform_index=55820);
    :description = "The calibrated tracker range measured from the CoM of the satellite platform, as in the EUMETSAT L1a files, but interpolated to FFSAR posting rate.";
    :units = "meters";
+```
+
+### List of netcdf variables in FFSAR-processed data
+The netcdf-files with FFSAR-processed altimetry data contain the following variables:
+```sh
+netcdf file: S6A_P4_1A_HR______20210101T235631_20210102T005248_20230518T043708_3377_005_146_073_EUM__REP_NT_F08.SEN6_TUDelft.nc
+	  dimensions:
+	    range_gate_index = 512;
+	    waveform_index = 69380;
+	    time = 26;
+	  variables:
+	    double range_gate_index(range_gate_index=512);
+	      :description = "Range gate index of the zero-padded waveforms";
+	      :units = "integer";
+
+	    double waveform_index(waveform_index=69380);
+	      :description = "This index represents the satellite positions / waveform number in along track direction. The posting rate of the initial FFSAR waveforms is roughly 1 m.";
+	      :units = "integer";
+
+	    char start_time(time=26);
+	      :description = "UTC Time of the overpass. Strictly speaking, this is the time corresponding to the waveform_index 0, but the satellite records the whole scene within a few seconds anyhow (7 km/s velocity).";
+	      :units = "yyyy-MM-dd hh:mm:ss.sss";
+
+	    double tracker_range(waveform_index=69380);
+	      :description = "The calibrated tracker range measured from the CoM of the satellite platform, as in the EUMETSAT L1a files, but interpolated.";
+	      :units = "meter";
+
+	    double latitude(waveform_index=69380);
+	      :description = "The latitude of the satellite CoM.";
+	      :units = "degree North";
+
+	    double longitude(waveform_index=69380);
+	      :description = "The longitude of the satellite CoM.";
+	      :units = "degree East";
+
+	    double altitude(waveform_index=69380);
+	      :description = "The altitude of the satellite CoM above the WGS84 reference ellipsoid.";
+	      :units = "meter";
+
+	    double waveform_power(waveform_index=69380, range_gate_index=512);
+	      :description = "The FFSAR-processed power waveforms.";
+	      :units = "intensity";
 ```
 ### Visualization of the data
 ![image](https://github.com/user-attachments/assets/74bebef8-71ca-475f-ae30-8d9cfcbf39b8)
