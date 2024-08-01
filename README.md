@@ -1,7 +1,7 @@
 # Polygon-informed-cross-track-altimetry-PICTA
 
 ## About
-This repository contains the MATLAB scripts used to generate the PICTA-derived river water level profiles in the work of Ehlers et al. (2024) *Polygon-Informed Cross-Track Altimetry (Picta): Estimating River Water Level Profiles with the Sentinel-6 Altimeter*, see reference below and details in the source publication.
+This repository contains the MATLAB scripts used to generate the PICTA-derived river water level profiles in the work of Ehlers et al. (2024) *Polygon-Informed Cross-Track Altimetry (Picta): Estimating River Water Level Profiles with the Sentinel-6 Altimeter* (https://www.dx.doi.org/10.2139/ssrn.4851452), see reference below and details in the source publication.
 
 ## Getting started
 In order to run these scripts we used an installation of MATLAB (R2021a) including the mapping toolbox, other versions were not tested.
@@ -124,7 +124,7 @@ river_name = 'Garonne';
 %river_name = 'Creuse';
 corrections_included = true;
 ```
-Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne_cor/``` and convert them to netcdf-files with detailed variable descriptions. These are added to the directory ```Results/L2_Garonne_cor/``` an represent the final PICTA processor output.
+Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne_cor/``` and convert them to netcdf-files with detailed variable descriptions. These are added to the directory ```Results/L2_Garonne_cor/``` and represent the final PICTA processor output.
 
 ## Results
 ### List of netcdf variables in PICTA-processed data
