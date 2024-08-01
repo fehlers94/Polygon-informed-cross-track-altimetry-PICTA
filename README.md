@@ -124,7 +124,7 @@ river_name = 'Garonne';
 %river_name = 'Creuse';
 corrections_included = true;
 ```
-Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne_cor/``` and convert them to netcdf-files with detailed variable descriptions. These are added to the directory ```Results/L2_Garonne_cor/```.
+Upon execution, the script will iterate over all the river water level data (mat-files) in ```Results/L2_Garonne_cor/``` and convert them to netcdf-files with detailed variable descriptions. These are added to the directory ```Results/L2_Garonne_cor/``` an represent the final PICTA processor output.
 
 ## Results
 ### List of netcdf variables in PICTA-processed data
