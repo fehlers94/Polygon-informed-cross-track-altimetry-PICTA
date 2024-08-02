@@ -7,41 +7,6 @@ You can cite this repository as
 
 Ehlers, F., Slobbe, D.C., Schlembach, F., Kleinherenbrink, M., Verlaan, M., 2024. Polygon-informed-cross-track-altimetry (PICTA) [Source code]. URL: https://github.com/fehlers94/Polygon-informed-cross-track-altimetry-PICTA/tree/v1.0 . DOI: https://doi.org/10.5281/zenodo.13165945 .
 
-## Getting started
-In order to run these scripts we used an installation of MATLAB (R2021a) including the mapping toolbox, other versions were not tested.
-
-To get a local copy of this repository up and running and to reproduce the results of the paper, follow the steps outlined hereafter.
-
-### Installation
-1. Make a local copy of this repository in a directory of your choice, e.g. via 
-   ```sh
-   git clone https://github.com/...
-   ```
-2. The script ```Software/Loadcommonsetting.m``` is used to save and load some info about your local directory. Therein, adjust the ```home_dir``` variable to state the directory of your local repository, e.g.
-   ```matlab
-   home_dir = '/home/fehelers/PhD Delft/Projects/Polygon-informed-cross-track-altimetry-PICTA';
-   ```
-4. Besides built-in MATLAB functions, we also need ```kml2struct``` (https://www.mathworks.com/matlabcentral/fileexchange/35642-kml2struct). Download the function into the ```Software``` folder.
-
-### Getting all the data
-Next we will need to obtain the underlying FFSAR-processed altimetry data over the Garonne and Creuse rivers from the respective 4TU.ResearchData repository, see https://www.doi.org/10.4121/304db898-f99c-490a-97c4-13f919ae3c05.
-
-4. Unpack the contents of ```Garonne_FFSAR_altimetry_data.zip``` to the directory ```Data/L1b_Garonne/nc/```
-5. Unpack the contents of ```Creuse_FFSAR_altimetry_data.zip``` to the directory ```Data/L1b_Creuse/nc/```
-
-Additionally, we will have to obtain the corresponding Level-2 altimetry data from EUMETSAT (http://doi.org/10.15770/EUM_SEC_CLM_0096), which contain the values of the geophysical corrections and which are not contained in the lower Level-1a and Level-1b products. The data can be obtained via the EUMETSAT Data Access Client (EUMDAC) client, see https://user.eumetsat.int/resources/user-guides/eumetsat-data-access-client-eumdac-guide on how to set it up. Once you have set up EUMDAC (made a user account, set your credentials, etc.) you can 
-
-6. execute
-   ```sh
-   eumdac download -c EO:EUM:DAT:0841 --start 2021-01-01  --end 2022-12-31  --bbox -1 42 1 50 --relorbit 35  
-   ```
-   in the directory ```Data/L2_Garonne/``` to download the appropriate Level-2 altimetry files for the Garonne river, then unzip the files.
-7. Execute
-   ```sh
-   eumdac download -c EO:EUM:DAT:0841 --start 2021-01-01  --end 2022-12-31  --bbox 0.9 46.6 1.0 46.7 --relorbit 73
-   ```
-   in the directory ```Data/L2_Creuse/``` to and download the appropriate Level-2 altimetry files for the Creuse river, then unzip these files as well.
-
 ## Brief software description
 The PICTA river retracking is implemented here simply as a sequence of three rudimentary MATLAB scripts: ```PICTA_river_retracking.m```, ```PICTA_apply_geophysical_corrections.m``` and```PICTA_export_to_netcdf.m```, the headers of which contain detailed information about their purpose, inputs, outputs and variable descriptions.
 ```matlab
@@ -82,6 +47,42 @@ The PICTA river retracking is implemented here simply as a sequence of three rud
 %   and exports the data to netcdf.
 % ...
 ```
+
+
+## Getting started
+In order to run these scripts we used an installation of MATLAB (R2021a) including the mapping toolbox, other versions were not tested.
+
+To get a local copy of this repository up and running and to reproduce the results of the paper, follow the steps outlined hereafter.
+
+### Installation
+1. Make a local copy of this repository in a directory of your choice, e.g. via 
+   ```sh
+   git clone https://github.com/...
+   ```
+2. The script ```Software/Loadcommonsetting.m``` is used to save and load some info about your local directory. Therein, adjust the ```home_dir``` variable to state the directory of your local repository, e.g.
+   ```matlab
+   home_dir = '/home/fehelers/PhD Delft/Projects/Polygon-informed-cross-track-altimetry-PICTA';
+   ```
+4. Besides built-in MATLAB functions, we also need ```kml2struct``` (https://www.mathworks.com/matlabcentral/fileexchange/35642-kml2struct). Download the function into the ```Software``` folder.
+
+### Getting all the data
+Next we will need to obtain the underlying FFSAR-processed altimetry data over the Garonne and Creuse rivers from the respective 4TU.ResearchData repository, see https://www.doi.org/10.4121/304db898-f99c-490a-97c4-13f919ae3c05.
+
+4. Unpack the contents of ```Garonne_FFSAR_altimetry_data.zip``` to the directory ```Data/L1b_Garonne/nc/```
+5. Unpack the contents of ```Creuse_FFSAR_altimetry_data.zip``` to the directory ```Data/L1b_Creuse/nc/```
+
+Additionally, we will have to obtain the corresponding Level-2 altimetry data from EUMETSAT (http://doi.org/10.15770/EUM_SEC_CLM_0096), which contain the values of the geophysical corrections and which are not contained in the lower Level-1a and Level-1b products. The data can be obtained via the EUMETSAT Data Access Client (EUMDAC) client, see https://user.eumetsat.int/resources/user-guides/eumetsat-data-access-client-eumdac-guide on how to set it up. Once you have set up EUMDAC (made a user account, set your credentials, etc.) you can 
+
+6. execute
+   ```sh
+   eumdac download -c EO:EUM:DAT:0841 --start 2021-01-01  --end 2022-12-31  --bbox -1 42 1 50 --relorbit 35  
+   ```
+   in the directory ```Data/L2_Garonne/``` to download the appropriate Level-2 altimetry files for the Garonne river, then unzip the files.
+7. Execute
+   ```sh
+   eumdac download -c EO:EUM:DAT:0841 --start 2021-01-01  --end 2022-12-31  --bbox 0.9 46.6 1.0 46.7 --relorbit 73
+   ```
+   in the directory ```Data/L2_Creuse/``` to and download the appropriate Level-2 altimetry files for the Creuse river, then unzip these files as well.
 
 
 ## Usage
